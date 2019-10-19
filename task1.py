@@ -25,7 +25,11 @@ if __name__ == '__main__':
 
     draw.rectangle((5*step_size,10*step_size , 6*step_size,11*step_size ), fill=134, outline=(134) ,width=step_size)
     fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 20)
-    draw.text((5*step_size,10*step_size), "P", font=fnt, fill=255)
+    draw.text((5*step_size,10*step_size), "P", font=fnt, fill=0)
+
+
+
+    
 
     del draw
 
