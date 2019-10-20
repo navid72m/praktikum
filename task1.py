@@ -1,4 +1,8 @@
 from PIL import Image, ImageDraw, ImageFont
+from matplotlib import pyplot
+import numpy
+import cv2
+import time
 
 if __name__ == '__main__':
     step_count = 25
@@ -27,10 +31,16 @@ if __name__ == '__main__':
     fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 20)
     draw.text((5*step_size,10*step_size), "P", font=fnt, fill=0)
 
+    count = 5
+    while (count != 0):
+        draw.rectangle(((5 +count)*step_size,(10 + count)*step_size , (6 + count)*step_size,11*step_size ), fill=134, outline=(134) ,width=step_size)
+        fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 20)
+        draw.text((5*step_size,10*step_size), "P", font=fnt, fill=0)
+        cv2.imshow("show", numpy.array(image))
+        cv2.waitKey(1000)
+        count = count -1
 
 
-    
 
     del draw
-
-    image.show()
+    cv2.waitKey(0)
