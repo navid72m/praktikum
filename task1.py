@@ -22,6 +22,14 @@ class Panel:
 
         self.Xpedestrian = Xpedestrian
         self.Ypedestrian = Ypedestrian
+        self.drawGrid()
+
+        self.draw.rectangle((Xpedestrian*self.step_size,Ypedestrian*self.step_size , (Xpedestrian+1)*self.step_size,(Ypedestrian+1)*self.step_size ), fill=134, outline=(134) ,width=self.step_size)
+        fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 20)
+        self.draw.text((Xpedestrian*self.step_size,Ypedestrian*self.step_size), "T", font=fnt, fill=0)
+        # cv2.imshow("show", numpy.array(self.image))
+
+    def drawGrid(self):
         for x in range(0, self.image.width, self.step_size):
             line = ((x, self.y_start), (x, self.y_end))
             self.draw.line(line, fill=128)
@@ -32,11 +40,6 @@ class Panel:
         for y in range(0, self.image.height, self.step_size):
             line = ((x_start, y), (x_end, y))
             self.draw.line(line, fill=128)
-
-        self.draw.rectangle((Xpedestrian*self.step_size,Ypedestrian*self.step_size , (Xpedestrian+1)*self.step_size,(Ypedestrian+1)*self.step_size ), fill=134, outline=(134) ,width=self.step_size)
-        fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 20)
-        self.draw.text((Xpedestrian*self.step_size,Ypedestrian*self.step_size), "T", font=fnt, fill=0)
-        # cv2.imshow("show", numpy.array(self.image))
 
     def drawRec(self, X, Y, text, color):
         self.draw.rectangle((X*self.step_size,Y*self.step_size , (X+1)*self.step_size,(Y+1)*self.step_size ), fill=color, outline=(color) ,width=self.step_size)
@@ -52,6 +55,7 @@ class Panel:
             cv2.waitKey(1000)
             count = count -1
             self.drawRec(self.Xpedestrian + count+1,self.Ypedestrian, "",255)
+            self.drawGrid()
 
         # del self.draw
 
