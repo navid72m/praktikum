@@ -32,8 +32,8 @@ class Panel:
             self.drawRec(ped[0], ped[1], "P", 134)
 
         self.drawRec(target[0], target[1], "T", 134)
-        # cv2.imshow("show", numpy.array(self.image))
-
+        cv2.imshow("show", numpy.array(self.image))
+        cv2.waitKey(1000)
     def drawGrid(self):
         for x in range(0, self.image.width, self.step_size):
             line = ((x, self.y_start), (x, self.y_end))
@@ -93,19 +93,23 @@ class Panel:
         #its distance from other pedestrains
         d1 = self.dist([pX-1, pY] , tCord)
         for ped in pedsTmp:
-            d1 +=  self.cost([pX-1, pY], ped , self.rMax)
+            if d1 != 0:
+                d1 +=  self.cost([pX-1, pY], ped , self.rMax)
 
         d2 = self.dist([pX+1,pY], tCord)
         for ped in pedsTmp:
-            d2 +=  self.cost([pX+1,pY], ped , self.rMax)
+            if d2 != 0:
+                d2 +=  self.cost([pX+1,pY], ped , self.rMax)
 
         d3 = self.dist([pX,pY-1], tCord)
         for ped in pedsTmp:
-            d3 +=  self.cost([pX,pY-1], ped , self.rMax)
+            if d3 != 0:
+                d3 +=  self.cost([pX,pY-1], ped , self.rMax)
 
         d4 = self.dist([pX,pY+1], tCord)
         for ped in pedsTmp:
-            d4 +=  self.cost([pX,pY+1], ped , self.rMax)
+            if d4 != 0:
+                d4 +=  self.cost([pX,pY+1], ped , self.rMax)
 
         #if one of the neibors are outside the grid, dn equals to sum of rows and columns
         #which is the max distance
@@ -141,18 +145,18 @@ class Panel:
             #in each step for each pedestrian move function is called
             for j in range(0, len(peds)):
                 #peds[j] coordinates get updated
-                print(len(peds))
                 peds[j] = self.moveUpdated(peds[j],self.target,peds)
                 print("after")
-                print(peds[j])
+                print("j: %d cord %s",j,str(peds[j]))
 
 
 
 
 
-peds = [[1, 1], [1, 10], [1, 12], [12, 1], [12, 10]]
+peds = [[1, 1], [1, 10], [1, 23], [23, 1], [23, 10]]
+# peds = [[1, 1], [1, 5]]
 target = [12, 13]
-p = Panel(peds,target, 5)
+p = Panel(peds,target, 4)
 p.updateState(p.peds,100)
 
 # for i in range(0, 25):
