@@ -71,7 +71,7 @@ class Panel:
 
         d = self.dist(p1,p2)
         if d < rMax :
-            return math.exp(-1 * 1 / (d**2 - rMax**2))
+            return 10*math.exp(1 / (d**2 - rMax**2))
         else:
             return 0
 
@@ -95,22 +95,23 @@ class Panel:
         for ped in pedsTmp:
             if d1 != 0:
                 d1 +=  self.cost([pX-1, pY], ped , self.rMax)
+                print("d1"+str(d1))
 
         d2 = self.dist([pX+1,pY], tCord)
         for ped in pedsTmp:
             if d2 != 0:
                 d2 +=  self.cost([pX+1,pY], ped , self.rMax)
-
+                print(d2)
         d3 = self.dist([pX,pY-1], tCord)
         for ped in pedsTmp:
             if d3 != 0:
                 d3 +=  self.cost([pX,pY-1], ped , self.rMax)
-
+                print(d3)
         d4 = self.dist([pX,pY+1], tCord)
         for ped in pedsTmp:
             if d4 != 0:
                 d4 +=  self.cost([pX,pY+1], ped , self.rMax)
-
+                print(d4)
         #if one of the neibors are outside the grid, dn equals to sum of rows and columns
         #which is the max distance
         if pX-1 < 0:
@@ -153,10 +154,10 @@ class Panel:
 
 
 
-peds = [[1, 1], [1, 10], [1, 23], [23, 1], [23, 10]]
+peds = [[1, 1], [1, 3], [1, 23], [23, 1], [23, 10]]
 # peds = [[1, 1], [1, 5]]
 target = [12, 13]
-p = Panel(peds,target, 4)
+p = Panel(peds,target, 1)
 p.updateState(p.peds,100)
 
 # for i in range(0, 25):
