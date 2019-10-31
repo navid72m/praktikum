@@ -17,20 +17,26 @@ class Panel:
     y_start = 0
     y_end = image.height
     step_size = int(image.width / step_count)
+    numRow=25
+    numCol=25
 
-    def __init__(self, Xpedestrian, Ypedestrian, Xtarget, Ytarget):
+    def __init__(self, Xpedestrian, Ypedestrian, Xtarget, Ytarget, obstacles):
 
 
         self.Xpedestrian = Xpedestrian
         self.Ypedestrian = Ypedestrian
         self.Xtarget = Xtarget
         self.Ytarget = Ytarget
+        self.obstacles = obstacles
         self.drawGrid()
 
         self.draw.rectangle((Xpedestrian*self.step_size,Ypedestrian*self.step_size , (Xpedestrian+1)*self.step_size,(Ypedestrian+1)*self.step_size ), fill=134, outline=(134) ,width=self.step_size)
         fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 20)
         self.draw.text((Xpedestrian*self.step_size,Ypedestrian*self.step_size), "P", font=fnt, fill=0)
-
+        self.states=numpy.zeros((self.numRow,self.numCol))
+        for obstacle in self.obstacles:
+            self.drawRec(obstacle[0], obstacle[1], "O", 134)
+            self.states[obstacle[0]][obstacle[1]] = 1
         self.drawRec(Xtarget, Ytarget, "T", 134)
         # cv2.imshow("show", numpy.array(self.image))
 
@@ -95,7 +101,7 @@ class Panel:
 
 
 
-p = Panel(2, 23, 25, 25)
+p = Panel(2, 23, 25, 25,[[2, 24],[ 3,24]])
 
 for i in range(0, 25):
     p.Xpedestrian, p.Ypedestrian = p.moveToTarget([p.Xpedestrian, p.Ypedestrian], [p.Xtarget, p.Ytarget])
