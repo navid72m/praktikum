@@ -62,6 +62,7 @@ class Panel:
         self.dijkstra(target[0], target[1])
         cv2.imshow("show", numpy.array(self.image))
         cv2.waitKey(1000)
+    #this method draw horizental and vertical lines and form a grid
     def drawGrid(self):
         for x in range(0, self.image.width, self.step_size):
             line = ((x, self.y_start), (x, self.y_end))
@@ -73,12 +74,12 @@ class Panel:
         for y in range(0, self.image.height, self.step_size):
             line = ((x_start, y), (x_end, y))
             self.draw.line(line, fill=128)
-
+    #this method takes position of the rectangle and text to be written in that cell and color is the color filled in the cell
     def drawRec(self, X, Y, text, color):
         self.draw.rectangle((X*self.step_size,Y*self.step_size , (X+1)*self.step_size,(Y+1)*self.step_size ), fill=color, outline=(color) )
         fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 20)
         # self.draw.text((X*self.step_size,Y*self.step_size), text, font=fnt, fill=0)
-
+    #this method takes new position and old position as arguments and move the pedestrian to the new position
     def moveRect(self, X_new, Y_new, X_old, Y_old, flag):
 
         self.drawRec( X_new, Y_new, "P",134)
@@ -92,10 +93,10 @@ class Panel:
 
 
         # del self.draw
-
+    #this method calculate the euclidean distance between p1 and p2
     def dist(self,p1,p2):
         return math.sqrt( abs(p1[0]-p2[0])**2 +  abs(p1[1]-p2[1])**2)
-
+    #this method takes p1 and p2 and if the distance is less than threshhold rMax then return the cost
     def cost(self,p1,p2,rMax):
 
         d = self.dist(p1,p2)
@@ -103,7 +104,7 @@ class Panel:
             return 10*math.exp(1 / (d**2 - rMax**2))
         else:
             return 0
-
+    #this method takes target position as an argument and perform dijkstra algorithm
     def dijkstra(self,tx,ty):
 
         # initdij(tx,ty)
