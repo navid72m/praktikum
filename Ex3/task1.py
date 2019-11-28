@@ -18,7 +18,7 @@ V =  -0.25*X
 
 ax0 = fig.add_subplot(gs[0, 0])
 ax0.streamplot(X, Y, U, V, density=[0.5, 1])
-ax0.set_title('\u03B1=-2 \u03B2=2 \u03BB1=-0.3 \u03BB2=-1.7' ,fontsize= 8)
+ax0.set_title('subfig 1.1 \u03B1=-2 \u03B2=2 \u03BB1=-0.3 \u03BB2=-1.7' ,fontsize= 8)
 
 alpha1 = -1
 beta1 = 2
@@ -28,7 +28,7 @@ V1 =  -0.25*X
 
 ax1 = fig.add_subplot(gs[1, 0])
 ax1.streamplot(X, Y, U1, V1, density=[0.5, 1])
-ax1.set_title('\u03B1=-1 \u03B2=2 \u03BB1=-0.5+0.5i \u03BB2=-0.5-0.5i' ,fontsize= 8)
+ax1.set_title('subfig 1.2 \u03B1=-1 \u03B2=2 \u03BB1=-0.5+0.5i \u03BB2=-0.5-0.5i' ,fontsize= 8)
 
 alpha2 = 2
 beta2 = -2
@@ -38,7 +38,7 @@ V2 =  -0.25*X
 
 ax2 = fig.add_subplot(gs[0, 1])
 ax2.streamplot(X, Y, U2, V2, density=[0.5, 1])
-ax2.set_title('\u03B1=2 \u03B2=-2 \u03BB1=2.22 \u03BB2=-0.22' ,fontsize= 8)
+ax2.set_title('subfig 1.3 \u03B1=2 \u03B2=-2 \u03BB1=2.22 \u03BB2=-0.22' ,fontsize= 8)
 
 alpha3 = 2
 beta3 = 2
@@ -48,7 +48,7 @@ V3 =  -0.25*X
 
 ax3 = fig.add_subplot(gs[1, 1])
 ax3.streamplot(X, Y, U3, V3, density=[0.5, 1])
-ax3.set_title('\u03B1=2 \u03B2=2 \u03BB1=1.7 \u03BB2=0.3' ,fontsize= 8)
+ax3.set_title('subfig 1.4 \u03B1=2 \u03B2=2 \u03BB1=1.7 \u03BB2=0.3' ,fontsize= 8)
 
 alpha4 = 1
 beta4 = 2
@@ -58,7 +58,7 @@ V4 =  -0.25*X
 
 ax4 = fig.add_subplot(gs[2,0])
 ax4.streamplot(X, Y, U4, V4, density=[0.5, 1])
-ax4.set_title('\u03B1=1 \u03B2=2 \u03BB1=0.5+0.5i \u03BB2=0.5-0.5i' ,fontsize= 8)
+ax4.set_title('subfig 1.5 \u03B1=1 \u03B2=2 \u03BB1=0.5+0.5i \u03BB2=0.5-0.5i' ,fontsize= 8)
 
 # Varying color along a streamline
 
